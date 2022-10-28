@@ -9,7 +9,7 @@ import {
   SafeAreaView,
 } from "react-native";
 
-const App = () => {
+const Screen2 = (props) => {
   // fadeAnim will be used as the value for opacity. Initial Value: 0
   const fadeAnim = useRef(new Animated.Value(0)).current;
 
@@ -42,13 +42,14 @@ const App = () => {
         ]}
       >
         <Image
-          source={require("./img/maybay.png")}
+          source={require("../img/maybay.png")}
           style={{ width: 150, height: 100 }}
         ></Image>
       </Animated.View>
       <View style={styles.buttonRow}>
         <Button title="Bottom" onPress={fadeIn}/>
         <Button title="Top" onPress={fadeOut}  />
+        <Button title="Go Back" onPress={()=> props.navigation.goBack()} />
       </View>
     </SafeAreaView>
   );
@@ -71,11 +72,13 @@ const styles = StyleSheet.create({
   },
   buttonRow: {
     // flex:1,
+    flexDirection:'row',
     flexBasis: 100,
-    justifyContent: "space-around",
+    justifyContent: "space-evenly",
+    alignItems:'center',
     marginVertical: 16,
     marginBottom: 0,
   },
 });
 
-export default App;
+export default Screen2;

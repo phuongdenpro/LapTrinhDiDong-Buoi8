@@ -8,7 +8,7 @@ import {
   SafeAreaView,
 } from "react-native";
 
-const App = () => {
+const Screen1 = (props) => {
   // fadeAnim will be used as the value for opacity. Initial Value: 0
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const fadeAnim2 = useRef(new Animated.Value(0)).current;
@@ -68,6 +68,7 @@ const App = () => {
       <View style={styles.buttonRow}>
         <Button title="Fade In View" onPress={fadeIn} />
         <Button title="Fade Out View" onPress={fadeOut} />
+        <Button title="Go Back" onPress={()=> props.navigation.goBack()} />
       </View>
     </SafeAreaView>
   );
@@ -93,4 +94,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default App;
+export default Screen1;

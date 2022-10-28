@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Bai2",
-    "slug": "Bai2",
+    "name": "ReactAnimation",
+    "slug": "ReactAnimation",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
