@@ -1,7 +1,8 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import {
   Animated,
   Text,
+  Image,
   View,
   StyleSheet,
   Button,
@@ -11,14 +12,13 @@ import {
 const App = () => {
   // fadeAnim will be used as the value for opacity. Initial Value: 0
   const fadeAnim = useRef(new Animated.Value(0)).current;
-  const fadeAnim2 = useRef(new Animated.Value(0)).current;
 
   const fadeIn = () => {
     // Will change fadeAnim value to 1 in 5 seconds
     Animated.timing(fadeAnim, {
-      toValue: 1,
+      toValue: 500,
       duration: 5000,
-      useNativeDriver: true,
+      // useNativeDriver:true
     }).start();
   };
 
@@ -27,16 +27,8 @@ const App = () => {
     Animated.timing(fadeAnim, {
       toValue: 0,
       duration: 3000,
-      useNativeDriver: true,
     }).start();
   };
-  useEffect(() => {
-    Animated.timing(fadeAnim2, {
-      toValue: 1,
-      duration: 10000,
-      useNativeDriver: true,
-    }).start();
-  }, [fadeAnim2]);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -45,29 +37,18 @@ const App = () => {
           styles.fadingContainer,
           {
             // Bind opacity to animated value
-            opacity: fadeAnim2,
-            marginBottom: 50,
+            marginTop: fadeAnim,
           },
         ]}
       >
-        <Text style={{ color: "green", fontSize: 22,fontWeight:'bold', marginBottom: 20 }}>
-          Welcome to Animation React Native!
-        </Text>
-      </Animated.View>
-      <Animated.View
-        style={[
-          styles.fadingContainer,
-          {
-            // Bind opacity to animated value
-            opacity: fadeAnim,
-          },
-        ]}
-      >
-        <Text style={styles.fadingText}>Fading View!</Text>
+        <Image
+          source={require("./img/maybay.png")}
+          style={{ width: 150, height: 100 }}
+        ></Image>
       </Animated.View>
       <View style={styles.buttonRow}>
-        <Button title="Fade In View" onPress={fadeIn} />
-        <Button title="Fade Out View" onPress={fadeOut} />
+        <Button title="Bottom" onPress={fadeIn}/>
+        <Button title="Top" onPress={fadeOut}  />
       </View>
     </SafeAreaView>
   );
@@ -76,20 +57,24 @@ const App = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+
     alignItems: "center",
-    justifyContent: "center",
+    // justifyContent: "center"
   },
   fadingContainer: {
-    padding: 20,
-    backgroundColor: "powderblue",
+    marginTop: 10,
+    flex: 1,
+    padding: 0,
   },
   fadingText: {
-    fontSize: 23,
+    fontSize: 28,
   },
   buttonRow: {
+    // flex:1,
     flexBasis: 100,
-    justifyContent: "space-evenly",
+    justifyContent: "space-around",
     marginVertical: 16,
+    marginBottom: 0,
   },
 });
 
